@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .settings-nav-item {
+            transition: all 0.3s ease;
+        }
+
+        .settings-nav-item.active {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #A855F7;
+        }
+
+        .settings-nav-item:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Switch Styling */
+        .switch-toggle {
+            width: 3rem;
+            height: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .switch-toggle.active {
+            background-color: #A855F7;
+        }
+
+        .switch-toggle::after {
+            content: '';
+            position: absolute;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .switch-toggle.active::after {
+            transform: translateX(1.5rem);
+        }
+
+        /* Placeholder Avatar Design */
+        .avatar-placeholder {
+            background: linear-gradient(45deg, #A855F7, #6366F1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-placeholder::after {
+            content: 'SJ';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Theme Preview Designs */
+        .theme-dark-preview {
+            background: linear-gradient(to right bottom, #1E293B, #0F172A);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-dark-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+        }
+
+        .theme-light-preview {
+            background: linear-gradient(to right bottom, #F8FAFC, #E2E8F0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-light-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+        }
+
+        .theme-system-preview {
+            background: linear-gradient(to right, #1E293B 50%, #F8FAFC 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-system-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+        }
+
+        /* Payment Card Design */
+        .payment-card {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="text-purple-500">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Settings Navigation -->
+                <div class="lg:w-64">
+                    <div class="glass-effect rounded-lg p-4">
+                        <h2 class="text-xl font-bold mb-4">Settings</h2>
+                        <nav class="space-y-2">
+                            <a href="#account" class="settings-nav-item active block px-4 py-2 rounded-lg">
+                                <i class="fas fa-user mr-2"></i>Account
+                            </a>
+                            <a href="#appearance" class="settings-nav-item block px-4 py-2 rounded-lg">
+                                <i class="fas fa-paint-brush mr-2"></i>Appearance
+                            </a>
+                            <a href="#notifications" class="settings-nav-item block px-4 py-2 rounded-lg">
+                                <i class="fas fa-bell mr-2"></i>Notifications
+                            </a>
+                            <a href="#privacy" class="settings-nav-item block px-4 py-2 rounded-lg">
+                                <i class="fas fa-lock mr-2"></i>Privacy
+                            </a>
+                            <a href="#billing" class="settings-nav-item block px-4 py-2 rounded-lg">
+                                <i class="fas fa-credit-card mr-2"></i>Billing
+                            </a>
+                            <a href="#integrations" class="settings-nav-item block px-4 py-2 rounded-lg">
+                                <i class="fas fa-plug mr-2"></i>Integrations
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="flex-1">
+                    <!-- Account Settings -->
+                    <div id="account" class="glass-effect rounded-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Account Settings</h2>
+                        
+                        <!-- Basic Information -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Basic Information</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Display Name</label>
+                                    <input type="text" value="Sarah Johnson" 
+                                           class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Email</label>
+                                    <input type="email" value="sarah@example.com" 
+                                           class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Bio</label>
+                                    <textarea class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white h-24">Digital artist and comic creator passionate about storytelling through visuals.</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Change Password</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Current Password</label>
+                                    <input type="password" placeholder="Enter current password" 
+                                           class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-2">New Password</label>
+                                    <input type="password" placeholder="Enter new password" 
+                                           class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Confirm New Password</label>
+                                    <input type="password" placeholder="Confirm new password" 
+                                           class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Two-Factor Authentication -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Two-Factor Authentication</h3>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium mb-1">Enhance Your Account Security</h4>
+                                    <p class="text-sm text-gray-400">Add an extra layer of security to your account</p>
+                                </div>
+                                <div class="switch-toggle active"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Appearance Settings -->
+                    <div id="appearance" class="glass-effect rounded-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Appearance Settings</h2>
+                        
+                        <!-- Theme -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Theme</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="glass-effect rounded-lg p-4 border-2 border-purple-500">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-medium">Dark Theme</span>
+                                        <i class="fas fa-check text-purple-500"></i>
+                                    </div>
+                                    <div class="w-full h-20 rounded-lg theme-dark-preview"></div>
+                                </div>
+                                <div class="glass-effect rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-medium">Light Theme</span>
+                                    </div>
+                                    <div class="w-full h-20 rounded-lg theme-light-preview"></div>
+                                </div>
+                                <div class="glass-effect rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-medium">System Theme</span>
+                                    </div>
+                                    <div class="w-full h-20 rounded-lg theme-system-preview"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Canvas Settings -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Canvas Settings</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Show Grid</h4>
+                                        <p class="text-sm text-gray-400">Display grid lines on the canvas</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Auto-Save</h4>
+                                        <p class="text-sm text-gray-400">Automatically save your work every 5 minutes</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-400 mb-2">Default Panel Size</label>
+                                    <select class="w-full bg-slate-800 rounded-lg px-4 py-2 text-white">
+                                        <option>Small (600x800)</option>
+                                        <option selected>Medium (800x1000)</option>
+                                        <option>Large (1000x1200)</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interface Settings -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Interface Settings</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Compact View</h4>
+                                        <p class="text-sm text-gray-400">Use a more compact interface layout</p>
+                                    </div>
+                                    <div class="switch-toggle"></div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Show Tooltips</h4>
+                                        <p class="text-sm text-gray-400">Display helpful tooltips when hovering over elements</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div id="notifications" class="glass-effect rounded-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Notification Settings</h2>
+                        
+                        <!-- Email Notifications -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Email Notifications</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">New Comments</h4>
+                                        <p class="text-sm text-gray-400">Receive notifications for new comments on your comics</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">New Followers</h4>
+                                        <p class="text-sm text-gray-400">Receive notifications when someone follows you</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Sales Updates</h4>
+                                        <p class="text-sm text-gray-400">Receive notifications for comic sales</p>
+                                    </div>
+                                    <div class="switch-toggle active"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Push Notifications -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Push Notifications</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Enable Push Notifications</h4>
+                                        <p class="text-sm text-gray-400">Receive notifications even when you're not on the site</p>
+                                    </div>
+                                    <div class="switch-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div id="privacy" class="glass-effect rounded-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Privacy Settings</h2>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium mb-1">Profile Visibility</h4>
+                                    <p class="text-sm text-gray-400">Make your profile visible to everyone</p>
+                                </div>
+                                <div class="switch-toggle active"></div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium mb-1">Show Activity Status</h4>
+                                    <p class="text-sm text-gray-400">Let others see when you're online</p>
+                                </div>
+                                <div class="switch-toggle active"></div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium mb-1">Data Collection</h4>
+                                    <p class="text-sm text-gray-400">Allow us to collect usage data to improve your experience</p>
+                                </div>
+                                <div class="switch-toggle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Settings -->
+                    <div id="billing" class="glass-effect rounded-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Billing Settings</h2>
+                        
+                        <!-- Current Plan -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Current Plan</h3>
+                            <div class="glass-effect rounded-lg p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div>
+                                        <h4 class="font-medium text-purple-500">Pro Creator</h4>
+                                        <p class="text-sm text-gray-400">$19.99/month</p>
+                                    </div>
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-500 rounded-full text-sm">Active</span>
+                                </div>
+                                <div class="space-y-2 mb-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Unlimited Comics</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Advanced Tools</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-2"></i>
+                                        <span>Priority Support</span>
+                                    </div>
+                                </div>
+                                <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                                    Change Plan
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Payment Methods -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Payment Methods</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg payment-card">
+                                    <div class="flex items-center">
+                                        <i class="fab fa-cc-visa text-2xl mr-4 text-white"></i>
+                                        <div>
+                                            <h4 class="font-medium text-white">Visa ending in 4242</h4>
+                                            <p class="text-sm text-gray-200">Expires 12/24</p>
+                                        </div>
+                                    </div>
+                                    <button class="text-white hover:text-gray-200 transition-colors">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                                <button class="flex items-center justify-center w-full p-4 glass-effect rounded-lg hover:bg-slate-800/50 transition-colors">
+                                    <i class="fas fa-plus mr-2"></i>
+                                    Add Payment Method
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integrations -->
+                    <div id="integrations" class="glass-effect rounded-lg p-6">
+                        <h2 class="text-2xl font-bold mb-6">Integrations</h2>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fab fa-discord text-2xl mr-4"></i>
+                                    <div>
+                                        <h4 class="font-medium">Discord</h4>
+                                        <p class="text-sm text-gray-400">Share your comics directly to Discord</p>
+                                    </div>
+                                </div>
+                                <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                                    Connect
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fab fa-twitter text-2xl mr-4"></i>
+                                    <div>
+                                        <h4 class="font-medium">Twitter</h4>
+                                        <p class="text-sm text-gray-400">Share updates on Twitter</p>
+                                    </div>
+                                </div>
+                                <button class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition-colors">
+                                    Disconnect
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fab fa-instagram text-2xl mr-4"></i>
+                                    <div>
+                                        <h4 class="font-medium">Instagram</h4>
+                                        <p class="text-sm text-gray-400">Share your comics on Instagram</p>
+                                    </div>
+                                </div>
+                                <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                                    Connect
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

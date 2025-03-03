@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Marketplace - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .category-button.active {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #A855F7;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="text-purple-500">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">Discover Amazing Comics</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Explore a vast collection of original comics created by talented artists from around the world.
+                </p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="glass-effect rounded-lg p-4 mb-8">
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" 
+                                   placeholder="Search comics..." 
+                                   class="w-full bg-slate-800 rounded-lg pl-10 pr-4 py-2 text-white">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <select class="bg-slate-800 rounded-lg px-4 py-2">
+                            <option>All Genres</option>
+                            <option>Action</option>
+                            <option>Comedy</option>
+                            <option>Drama</option>
+                            <option>Fantasy</option>
+                            <option>Horror</option>
+                            <option>Romance</option>
+                            <option>Sci-Fi</option>
+                        </select>
+                        <select class="bg-slate-800 rounded-lg px-4 py-2">
+                            <option>Most Popular</option>
+                            <option>Latest</option>
+                            <option>Top Rated</option>
+                            <option>Most Viewed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Comics -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Featured Comics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Featured Comic 1 -->
+                    <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                        <div class="relative aspect-[16/9]">
+                            <img src="https://via.placeholder.com/800x450" alt="Featured Comic" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-xl font-bold mb-2">The Last Hero</h3>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="bg-purple-500 px-2 py-1 rounded">Fantasy</span>
+                                    <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.9</span>
+                                    <span><i class="fas fa-eye mr-1"></i>12.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Comic 2 -->
+                    <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                        <div class="relative aspect-[16/9]">
+                            <img src="https://via.placeholder.com/800x450" alt="Featured Comic" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h3 class="text-xl font-bold mb-2">Cyber Dreams</h3>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="bg-blue-500 px-2 py-1 rounded">Sci-Fi</span>
+                                    <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.8</span>
+                                    <span><i class="fas fa-eye mr-1"></i>10.2k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Categories -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-6">Popular Categories</h2>
+                <div class="flex gap-4 overflow-x-auto pb-2">
+                    <button class="category-button active whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        All Comics
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-fist-raised mr-2"></i>Action
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-laugh-beam mr-2"></i>Comedy
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-theater-masks mr-2"></i>Drama
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-dragon mr-2"></i>Fantasy
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-ghost mr-2"></i>Horror
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-heart mr-2"></i>Romance
+                    </button>
+                    <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                        <i class="fas fa-robot mr-2"></i>Sci-Fi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comic Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Comic Card 1 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Moon Knights</h3>
+                            <span class="text-sm text-purple-500">Free</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-3">
+                            <img src="https://via.placeholder.com/32" alt="Author" class="w-6 h-6 rounded-full mr-2">
+                            <span>by Alex Smith</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">Fantasy</span>
+                            <div class="flex items-center gap-3">
+                                <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.5</span>
+                                <span><i class="fas fa-eye mr-1"></i>8.2k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comic Card 2 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Tech Warriors</h3>
+                            <span class="text-sm text-purple-500">$2.99</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-3">
+                            <img src="https://via.placeholder.com/32" alt="Author" class="w-6 h-6 rounded-full mr-2">
+                            <span>by Sarah Johnson</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">Sci-Fi</span>
+                            <div class="flex items-center gap-3">
+                                <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.7</span>
+                                <span><i class="fas fa-eye mr-1"></i>6.5k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comic Card 3 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Love & Magic</h3>
+                            <span class="text-sm text-purple-500">Free</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-3">
+                            <img src="https://via.placeholder.com/32" alt="Author" class="w-6 h-6 rounded-full mr-2">
+                            <span>by Emma Wilson</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">Romance</span>
+                            <div class="flex items-center gap-3">
+                                <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.6</span>
+                                <span><i class="fas fa-eye mr-1"></i>7.8k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comic Card 4 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Dark Shadows</h3>
+                            <span class="text-sm text-purple-500">$1.99</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400 mb-3">
+                            <img src="https://via.placeholder.com/32" alt="Author" class="w-6 h-6 rounded-full mr-2">
+                            <span>by Mike Chen</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="bg-slate-800 px-2 py-1 rounded">Horror</span>
+                            <div class="flex items-center gap-3">
+                                <span><i class="fas fa-star text-yellow-500 mr-1"></i>4.8</span>
+                                <span><i class="fas fa-eye mr-1"></i>5.9k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button class="bg-purple-500 text-white px-8 py-3 rounded-lg hover:bg-purple-600 transition-colors">
+                    Load More Comics
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

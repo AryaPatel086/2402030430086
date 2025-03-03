@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text & Speech Bubble Editor - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .comic-text {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .canvas-area {
+            background-color: #1a1a1a;
+            background-image: linear-gradient(45deg, #222 25%, transparent 25%),
+                            linear-gradient(-45deg, #222 25%, transparent 25%),
+                            linear-gradient(45deg, transparent 75%, #222 75%),
+                            linear-gradient(-45deg, transparent 75%, #222 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .bubble-preview {
+            min-height: 100px;
+            resize: both;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Text & Speech Bubble Editor</h1>
+                <div class="flex gap-4">
+                    <button class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                        <i class="fas fa-folder-open mr-2"></i>Load Template
+                    </button>
+                    <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                        <i class="fas fa-save mr-2"></i>Save to Library
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Panel - Text Properties -->
+                <div class="glass-effect rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-6">Text Properties</h2>
+                    
+                    <!-- Text Input -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2">Text Content</label>
+                        <textarea 
+                            class="w-full h-32 bg-slate-800 rounded-lg p-3 text-white resize-none"
+                            placeholder="Enter your text here..."></textarea>
+                    </div>
+
+                    <!-- Font Properties -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Font Family</label>
+                            <select class="w-full bg-slate-800 rounded-lg px-3 py-2">
+                                <option>Comic Neue</option>
+                                <option>Bangers</option>
+                                <option>Arial</option>
+                                <option>Impact</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Font Size</label>
+                                <input type="number" value="16" class="w-full bg-slate-800 rounded-lg px-3 py-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Line Height</label>
+                                <input type="number" value="1.5" step="0.1" class="w-full bg-slate-800 rounded-lg px-3 py-2">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Color</label>
+                                <input type="color" value="#ffffff" class="w-full h-10 bg-slate-800 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Opacity</label>
+                                <input type="range" min="0" max="100" value="100" class="w-full">
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-align-left"></i>
+                            </button>
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-align-center"></i>
+                            </button>
+                            <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                <i class="fas fa-align-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Panel - Preview -->
+                <div class="glass-effect rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-6">Preview</h2>
+                    <div class="canvas-area rounded-lg p-6 min-h-[400px] relative">
+                        <div class="bubble-preview bg-white text-black p-4 rounded-2xl comic-text relative inline-block">
+                            Hello! This is a sample speech bubble.
+                            <div class="absolute -bottom-4 -left-2 w-4 h-4 bg-white transform rotate-45"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Bubble Properties -->
+                <div class="glass-effect rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-6">Bubble Properties</h2>
+                    
+                    <!-- Bubble Style -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Bubble Style</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <button class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 aspect-square">
+                                    <i class="fas fa-comment text-2xl"></i>
+                                </button>
+                                <button class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 aspect-square">
+                                    <i class="fas fa-comment-dots text-2xl"></i>
+                                </button>
+                                <button class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 aspect-square">
+                                    <i class="fas fa-cloud text-2xl"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tail Direction</label>
+                            <div class="grid grid-cols-3 gap-4">
+                                <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                                <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                                <button class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Background Color</label>
+                            <input type="color" value="#ffffff" class="w-full h-10 bg-slate-800 rounded-lg">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Border Properties</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Width</label>
+                                    <input type="number" value="2" class="w-full bg-slate-800 rounded-lg px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Style</label>
+                                    <select class="w-full bg-slate-800 rounded-lg px-3 py-2">
+                                        <option>Solid</option>
+                                        <option>Dashed</option>
+                                        <option>Dotted</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Corner Radius</label>
+                            <input type="range" min="0" max="50" value="16" class="w-full">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Shadow</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Blur</label>
+                                    <input type="range" min="0" max="20" value="5" class="w-full">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Opacity</label>
+                                    <input type="range" min="0" max="100" value="20" class="w-full">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Templates -->
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-6">Quick Templates</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <button class="glass-effect p-4 rounded-lg hover-scale text-center">
+                        <div class="bg-white text-black p-2 rounded-lg mb-2 comic-text text-sm">
+                            Speech
+                        </div>
+                        <span class="text-sm">Basic Speech</span>
+                    </button>
+                    <button class="glass-effect p-4 rounded-lg hover-scale text-center">
+                        <div class="bg-yellow-300 text-black p-2 rounded-lg mb-2 comic-text text-sm">
+                            Thought
+                        </div>
+                        <span class="text-sm">Thought Bubble</span>
+                    </button>
+                    <button class="glass-effect p-4 rounded-lg hover-scale text-center">
+                        <div class="bg-red-500 text-white p-2 rounded-lg mb-2 comic-text text-sm">
+                            Shout!
+                        </div>
+                        <span class="text-sm">Shout</span>
+                    </button>
+                    <button class="glass-effect p-4 rounded-lg hover-scale text-center">
+                        <div class="bg-blue-500 text-white p-2 rounded-lg mb-2 comic-text text-sm">
+                            Whisper...
+                        </div>
+                        <span class="text-sm">Whisper</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

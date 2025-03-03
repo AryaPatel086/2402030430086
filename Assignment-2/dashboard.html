@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Creator Dashboard - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .canvas-area {
+            background-color: #1a1a1a;
+            background-image: linear-gradient(45deg, #222 25%, transparent 25%),
+                            linear-gradient(-45deg, #222 25%, transparent 25%),
+                            linear-gradient(45deg, transparent 75%, #222 75%),
+                            linear-gradient(-45deg, transparent 75%, #222 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .tool-button {
+            transition: all 0.3s ease;
+        }
+
+        .tool-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-button.active {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #A855F7;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="text-purple-500">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen">
+        <div class="flex h-[calc(100vh-5rem)]">
+            <!-- Left Sidebar - Tools -->
+            <div class="w-16 bg-slate-900 border-r border-gray-800 flex flex-col items-center py-4 space-y-4">
+                <button class="tool-button active w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-mouse-pointer text-xl"></i>
+                </button>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-pen text-xl"></i>
+                </button>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-shapes text-xl"></i>
+                </button>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-image text-xl"></i>
+                </button>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-comment-alt text-xl"></i>
+                </button>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-font text-xl"></i>
+                </button>
+                <div class="flex-1"></div>
+                <button class="tool-button w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-cog text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Main Canvas Area -->
+            <div class="flex-1 flex flex-col">
+                <!-- Top Toolbar -->
+                <div class="h-16 bg-slate-900 border-b border-gray-800 flex items-center justify-between px-6">
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                            <i class="fas fa-save mr-2"></i>Save
+                        </button>
+                        <button class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                            <i class="fas fa-undo mr-2"></i>Undo
+                        </button>
+                        <button class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                            <i class="fas fa-redo mr-2"></i>Redo
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                            <i class="fas fa-play mr-2"></i>Preview
+                        </button>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-share mr-2"></i>Publish
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas -->
+                <div class="flex-1 bg-slate-800 p-8 overflow-auto">
+                    <div class="canvas-area w-full h-[800px] rounded-lg shadow-lg">
+                        <!-- Comic Panels Grid -->
+                        <div class="grid grid-cols-2 gap-4 p-4 h-full">
+                            <div class="bg-white rounded-lg shadow-lg"></div>
+                            <div class="bg-white rounded-lg shadow-lg"></div>
+                            <div class="bg-white rounded-lg shadow-lg"></div>
+                            <div class="bg-white rounded-lg shadow-lg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Properties -->
+            <div class="w-64 bg-slate-900 border-l border-gray-800">
+                <!-- Properties Panel -->
+                <div class="p-4">
+                    <h3 class="font-bold mb-4">Properties</h3>
+                    <div class="space-y-4">
+                        <!-- Panel Properties -->
+                        <div class="glass-effect rounded-lg p-4">
+                            <h4 class="text-sm font-semibold mb-3">Panel Settings</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Size</label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <input type="text" value="400" class="bg-slate-800 rounded px-2 py-1 text-sm">
+                                        <input type="text" value="300" class="bg-slate-800 rounded px-2 py-1 text-sm">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Border Width</label>
+                                    <input type="range" class="w-full">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Border Style</label>
+                                    <select class="w-full bg-slate-800 rounded px-2 py-1 text-sm">
+                                        <option>Solid</option>
+                                        <option>Dashed</option>
+                                        <option>Dotted</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Style Properties -->
+                        <div class="glass-effect rounded-lg p-4">
+                            <h4 class="text-sm font-semibold mb-3">Style</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Fill Color</label>
+                                    <input type="color" class="w-full h-8 rounded bg-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Border Color</label>
+                                    <input type="color" class="w-full h-8 rounded bg-slate-800">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-1">Opacity</label>
+                                    <input type="range" class="w-full">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layer Properties -->
+                        <div class="glass-effect rounded-lg p-4">
+                            <h4 class="text-sm font-semibold mb-3">Layers</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between bg-slate-800 p-2 rounded">
+                                    <span class="text-sm">Background</span>
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="flex items-center justify-between bg-slate-800 p-2 rounded">
+                                    <span class="text-sm">Characters</span>
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="flex items-center justify-between bg-slate-800 p-2 rounded">
+                                    <span class="text-sm">Speech Bubbles</span>
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

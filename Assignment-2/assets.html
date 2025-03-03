@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Library - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .category-button {
+            transition: all 0.3s ease;
+        }
+
+        .category-button.active {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #A855F7;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="text-purple-500">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Asset Library</h1>
+                <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                    <i class="fas fa-upload mr-2"></i>Upload Assets
+                </button>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="glass-effect rounded-lg p-4 mb-8">
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" 
+                                   placeholder="Search assets..." 
+                                   class="w-full bg-slate-800 rounded-lg pl-10 pr-4 py-2 text-white">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <select class="bg-slate-800 rounded-lg px-4 py-2">
+                            <option>All Types</option>
+                            <option>Characters</option>
+                            <option>Backgrounds</option>
+                            <option>Props</option>
+                            <option>Effects</option>
+                        </select>
+                        <select class="bg-slate-800 rounded-lg px-4 py-2">
+                            <option>Recently Added</option>
+                            <option>Most Used</option>
+                            <option>Alphabetical</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex gap-4 mb-8 overflow-x-auto pb-2">
+                <button class="category-button active whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    All Assets
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-user mr-2"></i>Characters
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-image mr-2"></i>Backgrounds
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-cube mr-2"></i>Props
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-star mr-2"></i>Effects
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-comment-alt mr-2"></i>Speech Bubbles
+                </button>
+                <button class="category-button whitespace-nowrap px-4 py-2 rounded-lg glass-effect">
+                    <i class="fas fa-font mr-2"></i>Text Styles
+                </button>
+            </div>
+
+            <!-- Asset Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <!-- Asset Card 1 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="aspect-square bg-slate-800 relative group">
+                        <img src="https://via.placeholder.com/300" alt="Hero Character" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <button class="p-2 bg-purple-500 rounded-lg hover:bg-purple-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="p-2 bg-slate-700 rounded-lg hover:bg-slate-600">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-semibold mb-1">Hero Character</h3>
+                        <p class="text-sm text-gray-400">Character</p>
+                    </div>
+                </div>
+
+                <!-- Asset Card 2 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="aspect-square bg-slate-800 relative group">
+                        <img src="https://via.placeholder.com/300" alt="City Background" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <button class="p-2 bg-purple-500 rounded-lg hover:bg-purple-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="p-2 bg-slate-700 rounded-lg hover:bg-slate-600">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-semibold mb-1">City Background</h3>
+                        <p class="text-sm text-gray-400">Background</p>
+                    </div>
+                </div>
+
+                <!-- Asset Card 3 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="aspect-square bg-slate-800 relative group">
+                        <img src="https://via.placeholder.com/300" alt="Magic Effect" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <button class="p-2 bg-purple-500 rounded-lg hover:bg-purple-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="p-2 bg-slate-700 rounded-lg hover:bg-slate-600">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-semibold mb-1">Magic Effect</h3>
+                        <p class="text-sm text-gray-400">Effect</p>
+                    </div>
+                </div>
+
+                <!-- Asset Card 4 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="aspect-square bg-slate-800 relative group">
+                        <img src="https://via.placeholder.com/300" alt="Speech Bubble" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <button class="p-2 bg-purple-500 rounded-lg hover:bg-purple-600">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="p-2 bg-slate-700 rounded-lg hover:bg-slate-600">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-semibold mb-1">Speech Bubble</h3>
+                        <p class="text-sm text-gray-400">Speech Bubble</p>
+                    </div>
+                </div>
+
+                <!-- More Asset Cards... -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition-colors">
+                    Load More Assets
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

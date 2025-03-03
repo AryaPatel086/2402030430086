@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Your Comic - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="hover:text-purple-500 transition-colors">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">Publish Your Comic</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Share your creation with the world. Set up your comic's details, choose your publishing options, and manage how readers can interact with your work.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column - Comic Details -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Basic Information -->
+                    <div class="glass-effect rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-6">Comic Details</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Title</label>
+                                <input type="text" 
+                                       class="w-full bg-slate-800 rounded-lg px-4 py-2"
+                                       placeholder="Enter your comic's title">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Description</label>
+                                <textarea 
+                                    class="w-full h-32 bg-slate-800 rounded-lg p-4 resize-none"
+                                    placeholder="Tell readers what your comic is about..."></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Genre</label>
+                                    <select class="w-full bg-slate-800 rounded-lg px-4 py-2">
+                                        <option>Action</option>
+                                        <option>Comedy</option>
+                                        <option>Drama</option>
+                                        <option>Fantasy</option>
+                                        <option>Horror</option>
+                                        <option>Romance</option>
+                                        <option>Sci-Fi</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Age Rating</label>
+                                    <select class="w-full bg-slate-800 rounded-lg px-4 py-2">
+                                        <option>All Ages</option>
+                                        <option>Teen (13+)</option>
+                                        <option>Mature (16+)</option>
+                                        <option>Adult (18+)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Tags</label>
+                                <input type="text" 
+                                       class="w-full bg-slate-800 rounded-lg px-4 py-2"
+                                       placeholder="Add tags separated by commas">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Pages -->
+                    <div class="glass-effect rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-6">Preview Pages</h2>
+                        <div class="preview-grid mb-4">
+                            <div class="aspect-[2/3] bg-slate-800 rounded-lg relative group">
+                                <img src="https://via.placeholder.com/300x450" alt="Page 1" class="w-full h-full object-cover rounded-lg">
+                                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <button class="p-2 bg-red-500 rounded-lg">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="aspect-[2/3] bg-slate-800 rounded-lg border-2 border-dashed border-gray-600 flex items-center justify-center cursor-pointer hover:border-purple-500 transition-colors">
+                                <i class="fas fa-plus text-2xl text-gray-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-400">Add up to 3 preview pages to give readers a taste of your comic.</p>
+                    </div>
+
+                    <!-- Publishing Options -->
+                    <div class="glass-effect rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-6">Publishing Options</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h3 class="font-medium">Make this comic public</h3>
+                                    <p class="text-sm text-gray-400">Your comic will be visible in the marketplace</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h3 class="font-medium">Allow comments</h3>
+                                    <p class="text-sm text-gray-400">Readers can leave comments on your comic</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg">
+                                <div>
+                                    <h3 class="font-medium">Enable downloads</h3>
+                                    <p class="text-sm text-gray-400">Allow readers to download your comic</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Pricing & Sharing -->
+                <div class="space-y-8">
+                    <!-- Pricing -->
+                    <div class="glass-effect rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-6">Pricing</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-slate-800 rounded-lg">
+                                <input type="radio" name="pricing" id="free" class="text-purple-500">
+                                <div class="flex-1">
+                                    <label for="free" class="font-medium">Free</label>
+                                    <p class="text-sm text-gray-400">Available to everyone</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-slate-800 rounded-lg">
+                                <input type="radio" name="pricing" id="paid" class="text-purple-500">
+                                <div class="flex-1">
+                                    <label for="paid" class="font-medium">Paid</label>
+                                    <div class="mt-2">
+                                        <input type="number" 
+                                               class="w-full bg-slate-700 rounded-lg px-4 py-2"
+                                               placeholder="Enter price in USD">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sharing -->
+                    <div class="glass-effect rounded-lg p-6">
+                        <h2 class="text-xl font-bold mb-6">Share</h2>
+                        <div class="space-y-4">
+                            <button class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fab fa-twitter mr-2"></i>Share on Twitter
+                            </button>
+                            <button class="w-full bg-blue-800 text-white px-4 py-3 rounded-lg hover:bg-blue-900 transition-colors">
+                                <i class="fab fa-facebook mr-2"></i>Share on Facebook
+                            </button>
+                            <button class="w-full bg-pink-600 text-white px-4 py-3 rounded-lg hover:bg-pink-700 transition-colors">
+                                <i class="fab fa-instagram mr-2"></i>Share on Instagram
+                            </button>
+                            <div class="relative">
+                                <input type="text" 
+                                       value="https://comiccraft.com/comics/your-comic"
+                                       class="w-full bg-slate-800 rounded-lg px-4 py-2 pr-20"
+                                       readonly>
+                                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-purple-500 hover:text-purple-400">
+                                    Copy Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publish Button -->
+                    <button class="w-full bg-purple-500 text-white px-6 py-4 rounded-lg hover:bg-purple-600 transition-colors font-semibold">
+                        Publish Comic
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - ComicCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+        }
+
+        .comic-font {
+            font-family: 'Bangers', cursive;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .tab-button.active {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #A855F7;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(255, 255, 255, 0.1));
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="hover:text-purple-500 transition-colors">Create</a>
+                    <a href="marketplace.html" class="hover:text-purple-500 transition-colors">Explore</a>
+                    <a href="assets.html" class="hover:text-purple-500 transition-colors">Assets</a>
+                    <a href="profile.html" class="text-purple-500">Profile</a>
+                    <a href="settings.html" class="hover:text-purple-500 transition-colors">Settings</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 pb-12">
+        <div class="container mx-auto">
+            <!-- Profile Header -->
+            <div class="glass-effect rounded-lg p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="w-32 h-32 rounded-full">
+                        <button class="absolute bottom-0 right-0 bg-purple-500 p-2 rounded-full hover:bg-purple-600 transition-colors">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex flex-col md:flex-row items-center gap-4 mb-4">
+                            <h1 class="text-3xl font-bold">Sarah Johnson</h1>
+                            <span class="bg-purple-500/20 text-purple-500 px-3 py-1 rounded-full text-sm">Pro Creator</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Digital artist and comic creator passionate about storytelling through visuals.</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                            <button class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                                <i class="fas fa-edit mr-2"></i>Edit Profile
+                            </button>
+                            <button class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors">
+                                <i class="fas fa-share-alt mr-2"></i>Share Profile
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex gap-8">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">24.5k</div>
+                            <div class="text-gray-400">Followers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">142</div>
+                            <div class="text-gray-400">Following</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">18</div>
+                            <div class="text-gray-400">Comics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stat-card glass-effect rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Total Views</h3>
+                        <i class="fas fa-eye text-purple-500 text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">156.2k</div>
+                    <div class="text-sm text-green-500">
+                        <i class="fas fa-arrow-up mr-1"></i>12% from last month
+                    </div>
+                </div>
+                <div class="stat-card glass-effect rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Total Likes</h3>
+                        <i class="fas fa-heart text-purple-500 text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">32.4k</div>
+                    <div class="text-sm text-green-500">
+                        <i class="fas fa-arrow-up mr-1"></i>8% from last month
+                    </div>
+                </div>
+                <div class="stat-card glass-effect rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Comments</h3>
+                        <i class="fas fa-comment text-purple-500 text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">2.8k</div>
+                    <div class="text-sm text-green-500">
+                        <i class="fas fa-arrow-up mr-1"></i>15% from last month
+                    </div>
+                </div>
+                <div class="stat-card glass-effect rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Revenue</h3>
+                        <i class="fas fa-dollar-sign text-purple-500 text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-2">$1,245</div>
+                    <div class="text-sm text-green-500">
+                        <i class="fas fa-arrow-up mr-1"></i>20% from last month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tabs -->
+            <div class="mb-8">
+                <div class="flex gap-4 overflow-x-auto pb-2">
+                    <button class="tab-button active whitespace-nowrap px-6 py-3 rounded-lg glass-effect">
+                        <i class="fas fa-book mr-2"></i>My Comics
+                    </button>
+                    <button class="tab-button whitespace-nowrap px-6 py-3 rounded-lg glass-effect">
+                        <i class="fas fa-heart mr-2"></i>Favorites
+                    </button>
+                    <button class="tab-button whitespace-nowrap px-6 py-3 rounded-lg glass-effect">
+                        <i class="fas fa-clock mr-2"></i>Recent Activity
+                    </button>
+                    <button class="tab-button whitespace-nowrap px-6 py-3 rounded-lg glass-effect">
+                        <i class="fas fa-chart-line mr-2"></i>Analytics
+                    </button>
+                </div>
+            </div>
+
+            <!-- My Comics Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Comic Card 1 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 flex gap-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-red-500/50 transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-2 left-2 bg-green-500 px-2 py-1 rounded text-sm">
+                            Published
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Tech Warriors</h3>
+                            <span class="text-sm text-purple-500">$2.99</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <span><i class="fas fa-eye mr-1"></i>8.2k views</span>
+                            <span><i class="fas fa-heart mr-1"></i>1.2k likes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comic Card 2 -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale">
+                    <div class="relative aspect-[3/4]">
+                        <img src="https://via.placeholder.com/300x400" alt="Comic Cover" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 flex gap-2">
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-purple-500/50 transition-colors">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 bg-black/50 rounded-full hover:bg-red-500/50 transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-2 left-2 bg-yellow-500 px-2 py-1 rounded text-sm">
+                            Draft
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold">Space Adventures</h3>
+                            <span class="text-sm text-purple-500">Free</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <span><i class="fas fa-eye mr-1"></i>4.5k views</span>
+                            <span><i class="fas fa-heart mr-1"></i>856 likes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add New Comic Card -->
+                <div class="glass-effect rounded-lg overflow-hidden hover-scale aspect-[3/4] flex flex-col items-center justify-center cursor-pointer hover:bg-slate-800/50 transition-colors">
+                    <i class="fas fa-plus text-4xl text-purple-500 mb-4"></i>
+                    <span class="font-medium">Create New Comic</span>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-bold mb-6">Recent Activity</h2>
+                <div class="space-y-4">
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-star text-purple-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">New Rating Received</h3>
+                                <p class="text-sm text-gray-400">Your comic "Tech Warriors" received a 5-star rating</p>
+                            </div>
+                            <span class="text-sm text-gray-400">2h ago</span>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-green-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">New Sale</h3>
+                                <p class="text-sm text-gray-400">Someone purchased "Space Adventures"</p>
+                            </div>
+                            <span class="text-sm text-gray-400">5h ago</span>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg p-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-comment text-blue-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">New Comment</h3>
+                                <p class="text-sm text-gray-400">John left a comment on your latest chapter</p>
+                            </div>
+                            <span class="text-sm text-gray-400">1d ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-slate-900">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-book-open text-2xl text-purple-500 mr-2"></i>
+                        <span class="text-2xl font-bold comic-font">ComicCraft</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Create, publish, and share amazing digital comics with the world.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Comic Creator</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Asset Library</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Publishing Tools</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-500">Help Center</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-500">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ComicCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
